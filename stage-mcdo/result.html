@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Resultat de la roue de la fortune</title>
+    <link rel="stylesheet" type="text/css" href="style-roue.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="result">
+            <h1>Felicitations :</h1>
+            <div class="result-image">
+                <img id="result-img" src="" alt="Résultat">
+            </div>
+            <div class="result-text" id="result-text"></div>
+        </div>
+    </div>
+
+    <script>
+
+        function launchConfetti() {
+            const duration = 200;
+            const particleCount = 20;
+
+
+            const confettiSettings = {
+                particleCount: particleCount,
+                startVelocity: 50,
+                spread: 60,
+                ticks: 200,
+                origin: { y: 0.6 },
+            };
+
+
+            function generateConfetti() {
+
+                confetti({
+                    ...confettiSettings,
+                    angle: 60,
+                    origin: { x: 0 }
+                });
+
+
+                confetti({
+                    ...confettiSettings,
+                    angle: 120,
+                    origin: { x: 1 }
+                });
+            }
+
+
+            function runConfetti() {
+                generateConfetti();
+                setTimeout(runConfetti, duration);
+            }
+
+            runConfetti();
+        }
+
+
+        window.onload = launchConfetti;
+
+
+        const params = new URLSearchParams(window.location.search);
+        const result = params.get('result');
+
+
+        const resultImg = document.getElementById('result-img');
+        const resultText = document.getElementById('result-text');
+
+
+        switch (result) {
+            case '1':
+                resultImg.src = 'happy meal.png';
+                resultImg.alt = 'Happy Meal';
+                resultText.innerText = 'Vous avez gagne : Happy Meal';
+                break;
+            case '2':
+                resultImg.src = 'images/mcchicken.png';
+                resultImg.alt = 'McChicken';
+                resultText.innerText = "Vous avez gagne : McChicken, veuillez recuperer votre lot au comptoir dans l'heure qui suit";
+                break;
+            case '3':
+                resultImg.src = 'mcflurry.png';
+                resultImg.alt = 'McFlurry';
+                resultText.innerText = 'Vous avez gagne : McFlurry';
+                break;
+            case '4':
+                resultImg.src = 'menu.png';
+                resultImg.alt = 'Menu';
+                resultText.innerText = 'Vous avez gagne : Menu';
+                break;
+            case '5':
+                resultImg.src = 'nuggets.png';
+                resultImg.alt = 'Nuggets';
+                resultText.innerText = 'Vous avez gagne : Nuggets';
+                break;
+            case '6':
+                resultImg.src = 'verre_mcdo.png';
+                resultImg.alt = 'Verre McDo';
+                resultText.innerText = 'Vous avez gagne : Verre!';
+                break;
+            case '7':
+                resultImg.src = 'mcflurry.png';
+                resultImg.alt = '1000 Points';
+                resultText.innerText = 'Vous avez gagne : Mcflurry !';
+                break;
+            case '8':
+                resultImg.src = 'mcchicken.png';
+                resultImg.alt = 'McChicken';
+                resultText.innerText = 'Vous avez gagne : McChicken!';
+                break;
+            default:
+                resultText.innerText = 'Aucun résultat trouvé.';
+        }
+    </script>
+</body>
+
+</html>

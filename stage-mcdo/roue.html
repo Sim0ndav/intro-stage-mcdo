@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Roue de la fortune</title>
+    <link rel="stylesheet" type="text/css" href="style-roue.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="spinBtn">Spin</div>
+        <div class="wheel">
+
+            <div class="number" style="--i:1;--clr:#1f532f;">
+                <img src="GOBELET-BOISSON-25CL-.png" alt="Image 1">
+            </div>
+            <div class="number" style="--i:2;--clr:#fedf22;">
+                <img src="sundae.png" alt="Image 2">
+            </div>
+            <div class="number" style="--i:3;--clr:#1f532f;">
+                <p> Perdu...</p>
+            </div>
+            <div class="number" style="--i:4;--clr:#fedf22;">
+                <img src="expresso.png" alt="Image 4">
+            </div>
+            <div class="number" style="--i:5;--clr:#1f532f;">
+                <img src="nuggets.png" alt="Image 5">
+            </div>
+            <div class="number" style="--i:6;--clr:#fedf22;">
+                <img src="surprise.png" alt="Image 6">
+            </div>
+            <div class="number" style="--i:7;--clr:#1f532f;">
+                <img src="image7.png" alt="Image 7">
+            </div>
+            <div class="number" style="--i:8;--clr:#fedf22;">
+                <img src="image8.png" alt="Image 8">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let wheel = document.querySelector('.wheel');
+        let spinBtn = document.querySelector('.spinBtn');
+        let angle = 0;
+
+        spinBtn.onclick = function () {
+            let segmentCount = 8;
+            let segmentAngle = 360 / segmentCount;
+            let randomSpin = Math.floor(Math.random() * segmentCount) + 1;
+            let spinDegree = 3600 + (randomSpin - 1) * segmentAngle;
+
+            angle += spinDegree;
+            wheel.style.transform = `rotate(${angle}deg)`;
+            setTimeout(function () {
+
+                window.location.href = `result.html?result=${randomSpin}`;
+            }, 5000);
+        };
+    </script>
+</body>
+
+</html>
